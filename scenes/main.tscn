@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ca57bfi1wnlm2"]
+
+[ext_resource type="PackedScene" uid="uid://v6i4h4h8emhh" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cb7i35oov6bf0" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://djhv2ndlfv8qj" path="res://scenes/asteroid.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cl2222j81u87w" path="res://scenes/enemy.tscn" id="3_enemy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sgp6g"]
+load_path = "res://.godot/imported/background.jpg-3c1ee7bbff6a1283595ccc69bb1d6acd.ctex"
+
+[node name="Main" type="Node2D" unique_id=902490413]
+script = ExtResource("1_sugp2")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=925126270]
+texture = SubResource("CompressedTexture2D_sgp6g")
+centered = false
+
+[node name="Player" parent="." unique_id=1068083660 instance=ExtResource("1_o5qli")]
+position = Vector2(400, 400)
+
+[node name="Asteroid" parent="." unique_id=1205936609 instance=ExtResource("2_sugp2")]
+position = Vector2(477, 107)
+
+[node name="enemies" type="Node2D" parent="." unique_id=1672693717]
+
+[node name="Enemy" parent="." unique_id=1578887231 instance=ExtResource("3_enemy")]
+modulate = Color(1, 0.35, 0.35, 1)
+
+[node name="lifeLabel" type="Label" parent="." unique_id=846271935]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 300.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 24
+text = "Время жизни: 0.0 с"
