@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://mario_main_tscn"]
+[gd_scene load_steps=11 format=3 uid="uid://mario_main_tscn"]
 
 [ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_player_scene"]
+
+[ext_resource type="Script" path="res://scripts/WorldArt.gd" id="2_art"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(4000, 40)
@@ -27,6 +29,7 @@ size = Vector2(200, 24)
 size = Vector2(200, 24)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("2_art")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
