@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d261j6oad4gl2"]
+
+[ext_resource type="Texture2D" uid="uid://kcmk8nekbpai" path="res://assets/on_button.png" id="1_1xt0e"]
+[ext_resource type="Script" uid="uid://v4mx6kjqqfhh" path="res://scripts/button.gd" id="1_rhj8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejr3x"]
+
+[node name="Button" type="Area2D" unique_id=1687568948]
+script = ExtResource("1_rhj8v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=835343000]
+texture = ExtResource("1_1xt0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462032585]
+shape = SubResource("RectangleShape2D_ejr3x")

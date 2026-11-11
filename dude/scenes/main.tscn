@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bki2qspwb1tv4"]
+
+[ext_resource type="Texture2D" uid="uid://hlq7caxc5d4n" path="res://assets/background.png" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cqrtgdyxpr6p2" path="res://scenes/dude.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://43j23eo6y3bu" path="res://assets/box.png" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://o26ndt61at5v" path="res://assets/jump_box.png" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://blaijgct3bhvb" path="res://scenes/rock.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bl3un6wfrfnu1" path="res://scenes/box.tscn" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://re63nsw7lg4k" path="res://audio/background.ogg" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://c72teyb5mdxio" path="res://scenes/fan.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://d261j6oad4gl2" path="res://scenes/button.tscn" id="9_85g3d"]
+
+[ext_resource type="PackedScene" path="res://scenes/fire_trap.tscn" id="10_fire"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yyre"]
+size = Vector2(1156.25, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sea3"]
+size = Vector2(38, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvqyy"]
+
+[node name="main" type="Node2D" unique_id=867231451]
+
+[node name="background" type="Sprite2D" parent="." unique_id=2138021903]
+position = Vector2(576.00006, 323.00003)
+scale = Vector2(2.25, 2.5234377)
+texture = ExtResource("1_o5qli")
+
+[node name="dude" parent="." unique_id=1105978342 instance=ExtResource("2_0wfyh")]
+position = Vector2(213, 485)
+
+[node name="barriers" type="Node2D" parent="." unique_id=69732326]
+
+[node name="floor" type="StaticBody2D" parent="barriers" unique_id=2056398639]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/floor" unique_id=761771350]
+position = Vector2(578.75, 578.5)
+shape = SubResource("RectangleShape2D_7yyre")
+
+[node name="floor2" type="StaticBody2D" parent="barriers" unique_id=2039818053]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/floor2" unique_id=1104737008]
+position = Vector2(580, -7)
+shape = SubResource("RectangleShape2D_7yyre")
+
+[node name="rightWall" type="StaticBody2D" parent="barriers" unique_id=1634078615]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/rightWall" unique_id=1844436304]
+position = Vector2(1160, 384)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_7yyre")
+
+[node name="leftWall" type="StaticBody2D" parent="barriers" unique_id=1276900862]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/leftWall" unique_id=1170953545]
+position = Vector2(-9, 528)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_7yyre")
+
+[node name="box" type="StaticBody2D" parent="." unique_id=1306680026]
+position = Vector2(692, 376)
+
+[node name="Sprite2D" type="Sprite2D" parent="box" unique_id=556197015]
+scale = Vector2(2, 2)
+texture = ExtResource("3_sugp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box" unique_id=871734513]
+shape = SubResource("RectangleShape2D_1sea3")
+
+[node name="jumpBox" type="StaticBody2D" parent="." unique_id=1905407459]
+position = Vector2(420, 435)
+
+[node name="Sprite2D" type="Sprite2D" parent="jumpBox" unique_id=1366030190]
+scale = Vector2(2, 2)
+texture = ExtResource("4_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumpBox" unique_id=64661634]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_uvqyy")
+
+[node name="Rock" parent="." unique_id=1105500638 instance=ExtResource("5_tbgi4")]
+position = Vector2(420, 289)
+
+[node name="Box" parent="." unique_id=1302894906 instance=ExtResource("6_tefeu")]
+position = Vector2(325, 339)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1460513499]
+stream = ExtResource("7_o6xl0")
+
+[node name="Fan" parent="." unique_id=697458784 instance=ExtResource("8_tipki")]
+position = Vector2(215, 559)
+
+[node name="Button" parent="." unique_id=1687568948 instance=ExtResource("9_85g3d")]
+position = Vector2(280, 561)
+node_path = NodePath("../Fan")
+
+[node name="FireTrap" parent="." instance=ExtResource("10_fire")]
+position = Vector2(530, 571)
