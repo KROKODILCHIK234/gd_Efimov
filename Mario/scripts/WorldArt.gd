@@ -24,14 +24,11 @@ func _ready() -> void:
 		sprite("ground", self, Vector2(i * 80 + 40, 760))
 	for i in range(1, 8):
 		var platform := get_node("Platform" + str(i))
-		platform.get_node("Visual").hide()
-		for j in range(5):
-			sprite("brick", platform, Vector2(j * 40 - 80, 0))
 		for j in range(3):
 			add_coin(platform.position + Vector2(j * 50 - 50, -50))
 	for i in range(8):
 		add_coin(Vector2(2600 + i * 90, 620))
-	$UI/Controls.text = "ЛУГОВЫЕ ОСТРОВА   /   1–1\n← →  движение    Shift  бег    Space / ↑  прыжок"
+	$UI/Controls.text = "ЛУГОВЫЕ ОСТРОВА   /   1–1\nA D / ← →  движение    Shift  бег    W / ↑ / Space  прыжок    Esc  пауза"
 	$UI/Controls.position = Vector2(28, 22)
 	counter = Label.new()
 	counter.position = Vector2(1020, 24)
@@ -67,3 +64,12 @@ func update_counter() -> void:
 	counter.text = "МОНЕТЫ  %02d / 29" % coins
 	if coins == 29:
 		counter.text = "ВСЕ МОНЕТЫ!"
+
+func _process(_delta: float) -> void:
+	var player := $Player
+	if player.star_time > 0.0:
+		counter.text = "МОНЕТЫ %02d / 29\nЗВЕЗДА: %d с" % [coins, ceili(player.star_time)]
+	else:
+		update_counter()
+		if player.big:
+			counter.text += "\nСУПЕР-ГЕРОЙ"
