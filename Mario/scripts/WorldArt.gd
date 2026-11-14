@@ -37,28 +37,15 @@ func _ready() -> void:
 	$UI.add_child(counter)
 	update_counter()
 
-func add_coin(pos: Vector2) -> void:
-	var area := Area2D.new()
-	area.position = pos
-	area.collision_layer = 0
-	area.collision_mask = 1
-	add_child(area)
-	var shape := CollisionShape2D.new()
-	var circle := CircleShape2D.new()
-	circle.radius = 16
-	shape.shape = circle
-	area.add_child(shape)
-	var art := sprite("coin", area, Vector2.ZERO)
-	var tween := art.create_tween().set_loops()
-	tween.tween_property(art, "position:y", -6.0, 0.6).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(art, "position:y", 0.0, 0.6).set_trans(Tween.TRANS_SINE)
-	area.body_entered.connect(func(body: Node2D):
-		if body != $Player or area.is_queued_for_deletion():
-			return
-		coins += 1
-		update_counter()
-		area.queue_free()
-	)
+func add_coin(pos):
+	var coin = preload("res://scenes/Coin.tscn").instantiate()
+	coin.position = pos
+	coin.collected.connect(on_coin_collected)
+	add_child(coin)
+
+func on_coin_collected():
+	coins += 1
+	update_counter()
 
 func update_counter() -> void:
 	counter.text = "МОНЕТЫ  %02d / 29" % coins

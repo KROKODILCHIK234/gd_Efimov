@@ -1,6 +1,5 @@
 extends "res://scripts/Enemy.gd"
 
-# Три простых состояния: ходьба, неподвижный панцирь, скольжение.
 enum State { WALK, SHELL, SLIDE }
 var state := State.WALK
 var shell_texture := preload("res://assets/enemies/shell.svg")
@@ -12,7 +11,9 @@ func _physics_process(delta: float) -> void:
 		super._physics_process(delta)
 		$Sprite.flip_h = direction < 0.0
 		return
-	velocity.x = direction * 360.0 if state == State.SLIDE else 0.0
+	velocity.x = 0.0
+	if state == State.SLIDE:
+		velocity.x = direction * 360.0
 	velocity.y += gravity * delta
 	move_and_slide()
 	if state == State.SLIDE:
@@ -40,7 +41,6 @@ func stomp(player_x: float) -> void:
 		$Sprite.texture = shell_texture
 		$Sprite.rotation = 0.0
 		$Sprite.scale = Vector2.ONE
-		# Нижняя грань остаётся на земле, высота панциря меньше.
 		var shape := RectangleShape2D.new()
 		shape.size = Vector2(40, 24)
 		$CollisionShape2D.set_deferred("shape", shape)
@@ -51,6 +51,7 @@ func is_stationary_shell() -> bool:
 
 func kick(player_x: float) -> void:
 	state = State.SLIDE
-	direction = 1.0 if player_x <= global_position.x else -1.0
-	# Слой 2 позволяет панцирю сталкиваться с другими врагами.
+	direction = -1.0
+	if player_x <= global_position.x:
+		direction = 1.0
 	collision_mask = 3

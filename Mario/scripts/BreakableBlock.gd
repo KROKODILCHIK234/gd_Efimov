@@ -6,7 +6,6 @@ var speeds: Array[Vector2] = []
 var elapsed := 0.0
 
 func break_block() -> void:
-	# Один удар — одно разрушение, даже если столкновений несколько.
 	if broken:
 		return
 	broken = true

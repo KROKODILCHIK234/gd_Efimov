@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# Каждый экземпляр ходит вокруг своей начальной позиции.
 @export var patrol_distance := 120.0
 @export var speed := 65.0
 var start_x := 0.0
@@ -24,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if is_on_wall():
 		direction *= -1.0
-	# Простое покачивание при ходьбе, без сложной системы анимаций.
 	animation_time += delta * 10.0
 	$Sprite.rotation = sin(animation_time) * 0.1
 	$Sprite.scale.y = 1.0 + sin(animation_time * 2.0) * 0.05
