@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://cqrtgdyxpr6p2"]
+
+[ext_resource type="Script" uid="uid://cpcd1e1ktvnxj" path="res://scripts/dude.gd" id="1_4k5av"]
+[ext_resource type="Texture2D" uid="uid://cfgyq8ftyw7lx" path="res://assets/dude/run.png" id="1_hkfyu"]
+[ext_resource type="Texture2D" uid="uid://dp8kkar0krgfq" path="res://assets/dude/idle.png" id="2_ke1di"]
+[ext_resource type="Texture2D" uid="uid://dqlnggoikdigg" path="res://assets/dude/double_jump.png" id="3_oeu1o"]
+[ext_resource type="AudioStream" uid="uid://ckxsed4pcs4ww" path="res://audio/step.ogg" id="5_ff63b"]
+
+[sub_resource type="Animation" id="Animation_ke1di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dude_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dude_sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hkfyu")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dude_sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_hkfyu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dude_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dude_sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dude_sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ke1di")]
+}
+
+[sub_resource type="Animation" id="Animation_4k5av"]
+resource_name = "jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dude_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.008071009, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dude_sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_oeu1o")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dude_sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_oeu1o"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dude_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [11, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dude_sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0018965555),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hkfyu")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dude_sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0018965555),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ke1di"]
+_data = {
+&"RESET": SubResource("Animation_ke1di"),
+&"idle": SubResource("Animation_hkfyu"),
+&"jump": SubResource("Animation_4k5av"),
+&"walk": SubResource("Animation_oeu1o")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7yyre"]
+radius = 13.5
+
+[node name="dude" type="CharacterBody2D" unique_id=1371346352]
+scale = Vector2(2, 2)
+script = ExtResource("1_4k5av")
+
+[node name="dude_sprite" type="Sprite2D" parent="." unique_id=1554819465]
+self_modulate = Color(1, 1, 1, 0.82898664)
+texture = ExtResource("1_hkfyu")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1753480354]
+libraries/ = SubResource("AnimationLibrary_ke1di")
+speed_scale = 1.565
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=144105350]
+position = Vector2(1.5, 1.5)
+shape = SubResource("CapsuleShape2D_7yyre")
+
+[node name="StepAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=840005238]
+stream = ExtResource("5_ff63b")
+bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=98704191]
+current = true
