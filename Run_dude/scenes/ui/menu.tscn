@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bq75x2ya4wf6a"]
+
+[ext_resource type="Script" uid="uid://68m5lk0eayat" path="res://scenes/ui/menu.gd" id="1_7w7rl"]
+
+[sub_resource type="Theme" id="Theme_8vqvp"]
+default_font_size = 80
+
+[sub_resource type="Theme" id="Theme_7w7rl"]
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_1sea3"]
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_wedc3"]
+default_font_size = 40
+
+[node name="menu" type="Node2D" unique_id=1306553470]
+script = ExtResource("1_7w7rl")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=717472995]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2093713007]
+layout_mode = 2
+
+[node name="MenuLabel" type="Label" parent="CenterContainer/MenuContainer" unique_id=1415716670]
+layout_mode = 2
+theme = SubResource("Theme_8vqvp")
+text = "pause"
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/MenuContainer" unique_id=838892661]
+layout_mode = 2
+theme = SubResource("Theme_7w7rl")
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/MenuContainer" unique_id=1080119702]
+layout_mode = 2
+theme = SubResource("Theme_1sea3")
+text = "Exit
+"
+
+[node name="VolumeContainer" type="HBoxContainer" parent="CenterContainer/MenuContainer" unique_id=1674244064]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/MenuContainer/VolumeContainer" unique_id=430321295]
+layout_mode = 2
+theme = SubResource("Theme_wedc3")
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/MenuContainer/VolumeContainer" unique_id=540495707]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+
+[node name="Label" type="Label" parent="CenterContainer/MenuContainer" unique_id=868137594]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Levels"
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/MenuContainer" unique_id=1210923690]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[connection signal="pressed" from="CenterContainer/MenuContainer/ResumeButton" to="." method="_unpause"]
+[connection signal="pressed" from="CenterContainer/MenuContainer/ExitButton" to="." method="_on_exit"]
+[connection signal="value_changed" from="CenterContainer/MenuContainer/VolumeContainer/VolumeSlider" to="." method="_on_volume_change"]
+[connection signal="item_selected" from="CenterContainer/MenuContainer/OptionButton" to="." method="on_level_button"]
